@@ -134,6 +134,7 @@ GEM
     pg (1.0.0)
     puma (3.11.2)
     rack (2.0.4)
+    rack-cors (1.0.2)
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails (5.2.0.rc1)
@@ -235,6 +236,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   puma (~> 3.11)
+  rack-cors
   rails (~> 5.2.0.beta2)
   rspec-rails (~> 3.5)
   shoulda-matchers (~> 3.1)
