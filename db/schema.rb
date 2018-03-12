@@ -10,10 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_05_091336) do
+ActiveRecord::Schema.define(version: 2018_03_12_202351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatbot_contents", force: :cascade do |t|
+    t.string "chatbot_content_primary"
+    t.string "chatbot_content_secondary"
+    t.integer "chatbot_content_cemplexity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cluster_user_references", force: :cascade do |t|
+    t.bigint "cluster_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cluster_id"], name: "index_cluster_user_references_on_cluster_id"
+    t.index ["user_id"], name: "index_cluster_user_references_on_user_id"
+  end
+
+  create_table "clusters", force: :cascade do |t|
+    t.bigint "rank_id"
+    t.datetime "last_time_cbc_posted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rank_id"], name: "index_clusters_on_rank_id"
+  end
+
+  create_table "message_reaction_references", force: :cascade do |t|
+    t.bigint "message_reaction_id"
+    t.bigint "message_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_message_reaction_references_on_message_id"
+    t.index ["message_reaction_id"], name: "index_message_reaction_references_on_message_reaction_id"
+    t.index ["user_id"], name: "index_message_reaction_references_on_user_id"
+  end
+
+  create_table "message_reactions", force: :cascade do |t|
+    t.string "reaction_content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "message_references", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "cluster_id"
+    t.bigint "message_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cluster_id"], name: "index_message_references_on_cluster_id"
+    t.index ["message_id"], name: "index_message_references_on_message_id"
+    t.index ["user_id"], name: "index_message_references_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.datetime "message_sent"
+    t.string "message_content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ranks", force: :cascade do |t|
     t.integer "rank_id"
@@ -53,4 +113,13 @@ ActiveRecord::Schema.define(version: 2018_03_05_091336) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "cluster_user_references", "clusters"
+  add_foreign_key "cluster_user_references", "users"
+  add_foreign_key "clusters", "ranks"
+  add_foreign_key "message_reaction_references", "message_reactions"
+  add_foreign_key "message_reaction_references", "messages"
+  add_foreign_key "message_reaction_references", "users"
+  add_foreign_key "message_references", "clusters"
+  add_foreign_key "message_references", "messages"
+  add_foreign_key "message_references", "users"
 end

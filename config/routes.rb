@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  resources :chatbot_contents
+  resources :message_reaction_references
+  resources :message_references
+  resources :messages
+  resources :message_reactions
+  resources :cluster_user_references
+  resources :clusters
   mount_devise_token_auth_for 'User', at: 'auth'
   resources :ranks
+  resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

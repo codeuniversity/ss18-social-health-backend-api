@@ -1,0 +1,2 @@
+class ChatbotContent < ApplicationRecord
+end
