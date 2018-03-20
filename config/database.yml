@@ -28,7 +28,7 @@ development:
   encoding: unicode
   database: ss18-backend-development
   pool: 5
-  username: root
+  username: postgres
   password: 
 
 test:
@@ -36,5 +36,5 @@ test:
   encoding: unicode
   database: ss18-backend-test
   pool: 5
-  username: root
+  username: postgres
   password: 
