@@ -30,7 +30,7 @@ development:
   database: ss18-backend-development
   pool: 5
   username: postgres
-  password: testen1234
+  password: peter
 
 test:
   default: &default
@@ -39,4 +39,4 @@ test:
   database: ss18-backend-test
   pool: 5
   username: postgres
-  password: testen1234
+  password: peter
