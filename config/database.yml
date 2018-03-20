@@ -29,7 +29,7 @@ development:
   database: ss18-backend-development
   pool: 5
   username: postgres
-  password: 
+  password: testen1234
 
 test:
   adapter: postgresql
@@ -37,4 +37,4 @@ test:
   database: ss18-backend-test
   pool: 5
   username: postgres
-  password: 
+  password: testen1234
