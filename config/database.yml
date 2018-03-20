@@ -24,6 +24,7 @@
 #   <<: *default
 #   database: db/production.sqlite3
 development:
+  default: &default
   adapter: postgresql
   encoding: unicode
   database: ss18-backend-development
@@ -32,6 +33,7 @@ development:
   password: testen1234
 
 test:
+  default: &default
   adapter: postgresql
   encoding: unicode
   database: ss18-backend-test
