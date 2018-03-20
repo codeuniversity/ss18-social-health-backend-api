@@ -28,13 +28,13 @@ development:
   encoding: unicode
   database: ss18-backend-development
   pool: 5
-  username: postgres
-  password: testen1234
+  username: root
+  password: 
 
 test:
   adapter: postgresql
   encoding: unicode
   database: ss18-backend-test
   pool: 5
-  username: postgres
-  password: testen1234
+  username: root
+  password: 
