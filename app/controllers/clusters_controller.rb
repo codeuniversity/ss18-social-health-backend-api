@@ -46,6 +46,8 @@ class ClustersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cluster_params
-      params.require(:cluster).permit(:rank_id, :last_time_cbc_posted)
+      params.require(:cluster).permit(:rank_id, :last_time_cbc_posted,
+        :user_left_cluster_timestamps, :time_between_member_left_cluster_created,
+        :has_more_than_4_members, :is_cluster_full)
     end
 end

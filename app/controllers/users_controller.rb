@@ -44,6 +44,9 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    # Check for existing clusters and if they are full or not
+
+
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.require(:user).permit(:nickname, :creduts, :rank_id, :last_time_credit_added)

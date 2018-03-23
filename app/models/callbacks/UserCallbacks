@@ -1,0 +1,4 @@
+class UserCallbacks
+  def after_create
+
+  end

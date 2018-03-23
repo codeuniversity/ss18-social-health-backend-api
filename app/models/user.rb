@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
 # has_many :transactions
 # has_many :items
 # has_many :articles
