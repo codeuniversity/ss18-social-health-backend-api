@@ -35,9 +35,14 @@ ActiveRecord::Schema.define(version: 2018_03_12_202351) do
   create_table "clusters", force: :cascade do |t|
     t.bigint "rank_id"
     t.datetime "last_time_cbc_posted"
+    t.integer "user_left_cluster_timestamps", array: true
+    t.boolean "is_cluster_full"
+    t.boolean "has_more_than_4_members"
+    t.integer "time_between_member_left_cluster_created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rank_id"], name: "index_clusters_on_rank_id"
+    t.index ["user_left_cluster_timestamps"], name: "index_clusters_on_user_left_cluster_timestamps", using: :gin
   end
 
   create_table "message_reaction_references", force: :cascade do |t|
@@ -104,11 +109,16 @@ ActiveRecord::Schema.define(version: 2018_03_12_202351) do
     t.string "nickname"
     t.string "image"
     t.string "email"
+    t.integer "user_id"
     t.json "tokens"
+    t.integer "credits"
+    t.bigint "rank_id"
+    t.datetime "last_time_credit_added"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["rank_id"], name: "index_users_on_rank_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
@@ -122,4 +132,5 @@ ActiveRecord::Schema.define(version: 2018_03_12_202351) do
   add_foreign_key "message_references", "clusters"
   add_foreign_key "message_references", "messages"
   add_foreign_key "message_references", "users"
+  add_foreign_key "users", "ranks"
 end

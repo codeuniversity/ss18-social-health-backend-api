@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
+    @cluster = Cluster.new(cluster_params)
     @user = User.new(user_params)
 
     if @user.save
@@ -49,6 +50,16 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:nickname, :creduts, :rank_id, :last_time_credit_added)
+      params.require(:user).permit(:nickname, :creduts, :rank_id,
+        :last_time_credit_added, :cluster_id)
+        # Here comes the cluster_id
+    end
+
+    def cluster_params
+      params.require(:cluster).permit(:cluster_id)
+    end
+    
+    def create_cluster
+
     end
 end

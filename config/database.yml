@@ -29,9 +29,9 @@ development:
   encoding: unicode
   database: ss18-backend-development
   pool: 5
-  username: postgres
-  password: peter
-  host: localhost
+  username: code17
+  password:
+  # host: localhost
 
 test:
   default: &default
@@ -39,6 +39,6 @@ test:
   encoding: unicode
   database: ss18-backend-test
   pool: 5
-  username: postgres
-  password: peter
-  host: localhost
+  username: code17
+  password:
+  # host: localhost

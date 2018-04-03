@@ -1,4 +1,5 @@
 class ClustersController < ApplicationController
+  after_action :collect_empty_clusters
   before_action :set_cluster, only: [:show, :update, :destroy]
 
   # GET /clusters
@@ -47,7 +48,31 @@ class ClustersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def cluster_params
       params.require(:cluster).permit(:rank_id, :last_time_cbc_posted,
-        :user_left_cluster_timestamps, :time_between_member_left_cluster_created,
-        :has_more_than_4_members, :is_cluster_full)
+        :time_between_member_left_cluster_created,:has_more_than_4_members,
+        :is_cluster_full, user_left_cluster_timestamps:[])
+    end
+
+    def collect_empty_clusters
+      @not_full_clusters = Cluster.where(is_cluster_full: false, has_more_than_4_members: true)
+      @less_than_4_member_clusters = Cluster.where(is_cluster_full: false, has_more_than_4_members: false)
+
+      if @less_than_4_member_clusters != nil
+        # Do something
+        puts "Test1"
+
+        @less_than_4_member_clusters.each do |not_full_cluster|
+          puts not_full_cluster.id
+          puts not_full_cluster.checkForTimeDifference
+          puts "q237ehs"
+        end
+
+      elsif @not_full_cluster != nil
+        # Do something
+        puts "Test2"
+      end
+    end
+
+    def calculate_time_member_left_cluster_created
+      # Do something
     end
 end

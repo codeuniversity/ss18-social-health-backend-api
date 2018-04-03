@@ -38,6 +38,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
       t.string :nickname
       t.string :image
       t.string :email
+      t.integer :user_id
 
       ## Tokens
       t.json :tokens
@@ -45,6 +46,8 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :credits
       t.references :rank, foreign_key: true
       t.timestamp :last_time_credit_added
+      # What I added
+      t.references :cluster, foreign_key: true
 
       t.timestamps
 
