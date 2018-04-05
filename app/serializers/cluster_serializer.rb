@@ -3,5 +3,5 @@ class ClusterSerializer < ActiveModel::Serializer
              :is_cluster_full, :has_more_than_4_members,
              :time_between_member_left_cluster_created, :created_at, :updated_at, :id
   has_one :rank
-  has_many :users
+  # has_many :users
 end

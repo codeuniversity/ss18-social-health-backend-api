@@ -15,7 +15,11 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @cluster = Cluster.new(cluster_params)
+    @cluster = Cluster.create(user_left_cluster_timestamps: [2323, 2323], is_cluster_full: false,
+      has_more_than_4_members: false, time_between_member_left_cluster_created: 2)
+
+    @cluster.save
+
     @user = User.new(user_params)
 
     if @user.save
@@ -58,7 +62,7 @@ class UsersController < ApplicationController
     def cluster_params
       params.require(:cluster).permit(:cluster_id)
     end
-    
+
     def create_cluster
 
     end

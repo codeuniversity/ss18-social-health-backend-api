@@ -1,27 +1,14 @@
 class Cluster < ActiveRecord::Base
   belongs_to :rank
-  has_many :users
-  # has_many :users
-  # attribute_method_prefix 'reset_'
-  # attribute_method_suffix '_highest?'
-  # define_attribute_methods :users
+  has_many :cluster_user_references
+  has_many :users, through: :cluster_user_references
 
-  # attribute_method_prefix 'reset_'
-  # attribute_method_suffix '_puts'
-  # define_attribute_methods :Cluster
-
-  # attr_accessor :Cluster, array: true, default: []
-
-  @users = ["2132", "2323"]
-  # @test_users = @users
-
-  def checkForTimeDifference
-    puts "so ein test"
-    puts @users
-    puts "hallo"
+  def self.not_full_clusters
+    @not_full_clusters = where(is_cluster_full: false, has_more_than_4_members: true)
   end
 
-    # def attribute_highest?(attribute)
-    #   send(attribute) > 100
-    # end
+  def checkForTimeDifference
+    
+  end
+
 end

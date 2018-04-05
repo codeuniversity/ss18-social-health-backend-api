@@ -9,7 +9,7 @@ class ClustersController < ApplicationController
     render json: @clusters
   end
 
-  # GET /clusters/1
+  # GET /clusters/
   def show
     render json: @cluster
   end
@@ -52,8 +52,9 @@ class ClustersController < ApplicationController
         :is_cluster_full, user_left_cluster_timestamps:[])
     end
 
+
     def collect_empty_clusters
-      @not_full_clusters = Cluster.where(is_cluster_full: false, has_more_than_4_members: true)
+
       @less_than_4_member_clusters = Cluster.where(is_cluster_full: false, has_more_than_4_members: false)
 
       if @less_than_4_member_clusters != nil

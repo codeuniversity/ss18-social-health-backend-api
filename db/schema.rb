@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 2018_03_12_202351) do
     t.string "nickname"
     t.string "image"
     t.string "email"
-    t.integer "user_id"
     t.json "tokens"
     t.integer "credits"
     t.bigint "rank_id"
