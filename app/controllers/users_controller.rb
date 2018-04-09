@@ -15,11 +15,6 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @cluster = Cluster.create(user_left_cluster_timestamps: [2323, 2323], is_cluster_full: false,
-      has_more_than_4_members: false, time_between_member_left_cluster_created: 2)
-
-    @cluster.save
-
     @user = User.new(user_params)
 
     if @user.save
@@ -49,21 +44,8 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    # Check for existing clusters and if they are full or not
-
-
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:nickname, :creduts, :rank_id,
-        :last_time_credit_added, :cluster_id)
-        # Here comes the cluster_id
-    end
-
-    def cluster_params
-      params.require(:cluster).permit(:cluster_id)
-    end
-
-    def create_cluster
-
+      params.require(:user).permit(:nickname, :creduts, :last_time_credit_added)
     end
 end

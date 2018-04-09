@@ -9,11 +9,16 @@ class User < ActiveRecord::Base
 has_one :cluster_user_reference
 has_one :cluster, through: :cluster_user_reference
 
+has_many :message_references
+has_many :messages, through: :message_references
+
 # Include default devise modules.
 devise :database_authenticatable, :trackable, :omniauthable
 include DeviseTokenAuth::Concerns::User
 
 def add_to_cluster
+  puts "This is the before_save cluster"
+  puts self.cluster
   cluster = find_or_create_cluster
   self.cluster = cluster
 end

@@ -1,6 +1,6 @@
 class MessageReferenceSerializer < ActiveModel::Serializer
   attributes :id
-  has_one :user
-  has_one :cluster
-  has_one :message
+  belongs_to :user
+  belongs_to :cluster
+  belongs_to :message
 end

@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /messages
   def index
@@ -16,6 +17,14 @@ class MessagesController < ApplicationController
   # POST /messages
   def create
     @message = Message.new(message_params)
+    user = @current_user
+    cluster = @current_user.cluster
+    message = @message
+
+    @reference = MessageReference.create(user: user, cluster: cluster, message: message)
+    @message.message_reference = @reference
+
+    # puts request.headers["UID"]
 
     if @message.save
       render json: @message, status: :created, location: @message
