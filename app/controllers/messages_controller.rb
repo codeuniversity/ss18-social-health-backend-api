@@ -22,9 +22,6 @@ class MessagesController < ApplicationController
 
     @message.message_reference = @reference
 
-    # @message.message_reference.cluster = @current_user.cluster
-    # @message.message_reference.user = @current_user
-
     puts "here is the messages message reference"
     puts @message.cluster
     puts @message.user
