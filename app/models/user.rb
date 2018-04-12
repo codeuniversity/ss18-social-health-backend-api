@@ -20,13 +20,14 @@ def add_to_cluster
   puts "This is the before_save cluster"
   puts self.cluster
   cluster = find_or_create_cluster
-  self.cluster = cluster
+  cluster_reference = ClusterUserReference.create(cluster: cluster, user: self)
+  self.cluster_user_reference = cluster_reference
 end
 
 def find_or_create_cluster
   not_full_clusters = Cluster.not_full_clusters
   if not_full_clusters.empty?
-    Cluster.create(rank: Rank.find_by(rank_id: 1))
+    Cluster.create(is_cluster_full: false, has_more_than_4_members: false)
   else
      # Here comes the logic where we determine which cluster a user gets assigned to
      # when we have not_full_clusters

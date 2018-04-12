@@ -3,7 +3,7 @@ class MessageReferencesController < ApplicationController
 
   # GET /message_references
   def index
-    @message_references = MessageReference.all
+    @message_references = MessageReference.last(params[:number_of_messages])
 
     render json: @message_references
   end

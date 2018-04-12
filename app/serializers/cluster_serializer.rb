@@ -4,4 +4,5 @@ class ClusterSerializer < ActiveModel::Serializer
              :time_between_member_left_cluster_created, :created_at, :updated_at, :id
   has_one :rank
   has_many :messages
+  has_many :users
 end

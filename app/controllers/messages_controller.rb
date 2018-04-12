@@ -20,8 +20,15 @@ class MessagesController < ApplicationController
     @reference = MessageReference.create(user: @current_user, cluster: @current_user.cluster,
     message: @message)
 
-    @reference.save
     @message.message_reference = @reference
+
+    # @message.message_reference.cluster = @current_user.cluster
+    # @message.message_reference.user = @current_user
+
+    puts "here is the messages message reference"
+    puts @message.cluster
+    puts @message.user
+    puts "Here it ends"
 
     # puts request.headers["UID"]
 
