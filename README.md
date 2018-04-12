@@ -1,24 +1,41 @@
-# README
+#README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Versions
+Ruby: 2.4.2
 
-Things you may want to cover:
+Rails: 5.2.0.rc1
 
-* Ruby version
+psql (PostgreSQL) 9.5.12
 
-* System dependencies
+Database creation
 
-* Configuration
+Add /config/database.yml
+With content:
 
-* Database creation
 
-* Database initialization
+development:
+  default: &default
+  adapter: postgresql
+  encoding: unicode
+  database: XXXXX-development
+  pool: 5
+  username: XXXXX
+  password: XXXXX
 
-* How to run the test suite
+test:
+  default: &default
+  adapter: postgresql
+  encoding: unicode
+  database: XXXXX-backend-test
+  pool: 5
+  username: XXXXX
+  password: XXXXX
 
-* Services (job queues, cache servers, search engines, etc.)
+Database initialization
+rails db:migrate
 
-* Deployment instructions
 
-* ...
+Create .env file and add Google Key and Secret from the Google API Console (Webclient) https://console.developers.google.com/apis/credentials
+
+GOOGLE_KEY=
+GOOGLE_SECRET=
