@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :messages
   resources :message_reactions
   resources :cluster_user_references
-  resources :clusters
+  resources :clusters do
+    resources :message_references
+  end
   mount_devise_token_auth_for 'User', at: 'auth'
   resources :ranks
   resources :users

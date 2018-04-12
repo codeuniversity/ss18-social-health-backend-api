@@ -17,11 +17,10 @@ class MessagesController < ApplicationController
   # POST /messages
   def create
     @message = Message.new(message_params)
-    user = @current_user
-    cluster = @current_user.cluster
-    message = @message
+    @reference = MessageReference.create(user: @current_user, cluster: @current_user.cluster,
+    message: @message)
 
-    @reference = MessageReference.create(user: user, cluster: cluster, message: message)
+    @reference.save
     @message.message_reference = @reference
 
     # puts request.headers["UID"]

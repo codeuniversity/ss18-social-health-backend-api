@@ -1,6 +1,4 @@
 class Message < ActiveRecord::Base
-  include UserInfo
-
   after_save :add_message_to_user_and_cluster
 
   has_one :message_reference
