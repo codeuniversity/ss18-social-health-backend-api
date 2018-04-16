@@ -17,6 +17,9 @@ class MessagesController < ApplicationController
   # POST /messages
   def create
     @message = Message.new(message_params)
+    # @message.cluster = @current_user.cluster
+    # @message.user = @current_user
+
     @reference = MessageReference.create(user: @current_user, cluster: @current_user.cluster,
     message: @message)
 

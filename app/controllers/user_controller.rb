@@ -1,20 +1,12 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+class UserController < ApplicationController
   before_action :authenticate_user!
 
-  # GET /users
-  def index
-    @users = User.all
-
-    render json: @users
-  end
-
-  # GET /users/1
+  # GET /user
   def show
-    render json: @user
+    render json: @current_user
   end
 
-  # POST /users
+  # POST /user
   def create
     @user = User.new(user_params)
 
@@ -25,7 +17,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
+  # PATCH/PUT /user
   def update
     if @user.update(user_params)
       render json: @user
@@ -34,16 +26,18 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
+  # DELETE /user
   def destroy
-    @user.destroy
+    @current_user.destroy
+  end
+
+  # PATCH/PUT /user - When this request gets triggered, the user leaves his cluster
+  def leave
+    @current_user.cluster = nil
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
     # Only allow a trusted parameter "white list" through.
     def user_params

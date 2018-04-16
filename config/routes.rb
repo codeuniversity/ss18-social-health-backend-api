@@ -11,8 +11,14 @@ Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'auth'
   resources :ranks
   resources :users
+  resource :user, controller: 'user' do
+    resource :cluster_user_reference, controller: 'cluster_user_reference'
+    member do
+      put 'leave'
+      patch 'leave
+    end
+  end
 
   get 'messages/:number_of_messages', to: 'message_references#index'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

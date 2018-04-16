@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_save :add_to_cluster
+  before_update :leave
 
 # has_many :transactions
 # has_many :items
@@ -33,6 +34,10 @@ class User < ActiveRecord::Base
        # when we have not_full_clusters
       not_full_clusters.sample
     end
+  end
+
+  def leave
+    self.cluster = nil
   end
 
   def find_or_create_rank
